@@ -1,12 +1,6 @@
-from ipaddress import IPv4Network, IPv6Network
+from ipaddress import ip_network
 
-class CIDRNode:
-    def __init__(self, prefix=None, left=None, right=None):
-        """Left is 0. Right is 1."""
-
-        self.prefix = prefix
-        self.left = left
-        self.right = right
+from .cidr_node import CIDRNode
 
 
 class CIDRTrie:
@@ -15,10 +9,11 @@ class CIDRTrie:
     node_class = CIDRNode
 
     def __init__(self):
+        # Could be 0.0.0.0/0, for now it's empty
         self.root = CIDRNode()
-        assert hasattr(self, "ipv_class"), "No specified IPV"
+        assert hasattr(self, "prefix_class"), "No specified IPV"
 
-    def insert(self, prefix: ip_network, val=None):
+    def insert(self, *node_data):
         """Inserts a prefix into the trie"""
 
         self._validate_prefix(prefix)
@@ -33,41 +28,39 @@ class CIDRTrie:
                 if node.left is None:
                     node.left = CIDRTrie.node_class()
                 node = node.left
-        node.prefix = prefix
+        node.add_data(*node_data)
 
     def __contains__(self, prefix: ip_network):
         """Checks if a prefix is contained within the Trie"""
 
-        if self.get_most_specific_contained_or_equal(prefix) is None:
-            return True
-        else:
-            return False
+        return bool(self.get_most_specific_trie_supernet(prefix))
 
-    def get_most_specific_contained_or_equal(self, prefix: ip_network):
-        """Returns the most specific superprefix"""
+    def get_most_specific_trie_supernet(self, prefix: ip_network):
+        """Returns the most specific trie subnet"""
 
         self._validate_prefix(prefix)
         bits = self._get_binary_str_from_prefix(prefix)
         node = self.root
+        # Default to None
+        most_specific_node = self.root.prefix
         for bit in bits[:prefix.prefixlen]:
             # Get the next node in the sequence
             next_node = node.right if bool(int(bit)) else node.left
-            # Prefix is more specific than anything in trie
+            # Reached edge of tree
             if next_node is None:
-                return node
+                return most_specific_node
+            # New most specific node
+            elif next_node.prefix is not None:
+                most_specific_node = next_node
             node = next_node
-        # Prefix is exactly the same as what exists in trie
-        if node.prefix is not None:
-            return node
-        # This prefix is a superprefix
-        else:
-            return None
+
+        return most_specific_node
 
     def _validate_prefix(self, prefix: ip_network):
         """Checks that prefix is the proper IPV type"""
 
-        if not isinstance(prefix, self.prefix_cls):
-            raise Exception("Must be an {self.prefix_cls.__name__}")
+        if not isinstance(prefix, self.prefix_class):
+            raise Exception("Must be an {self.prefix_class.__name__}")
 
     def _get_binary_str_from_prefix(self, prefix: ip_network):
         """Returns a binary string from a prefix"""
@@ -76,15 +69,5 @@ class CIDRTrie:
         for _byte in prefix.network_address.packed:
             # https://stackoverflow.com/a/339013/8903959
             # Convert to binary, then remove the 0b, then fill w/zeroes
-            binary_str += str(bin(_byte))[2:].zfill(4)
+            binary_str += str(bin(_byte))[2:].zfill(8)
         return binary_str
-
-class IPv4CIDRTrie(CIDRTrie):
-    """Trie of IPv4 CIDRs"""
-
-    prefix_cls = IPv4Address
-
-class IPv6CIDRTrie(CIDRTrie):
-    """Trie of IPv6 CIDRs"""
-
-    prefix_cls = IPv6Address

@@ -21,6 +21,7 @@ setup(
     python_requires=">=3.8",
     packages=find_packages(),
     install_requires=[
+        "ip_address",
     ],
     classifiers=[
         'Environment :: Console',
@@ -28,7 +29,7 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python :: 3'],
-    entry_points={
+    entry_points={},
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
 )
