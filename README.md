@@ -1,7 +1,6 @@
 # lib\_cidr\_trie
 This package contains a trie of prefixes for fast lookups
 
-* [lib\_cidr_trie](#lib_cidr_trie)
 * [Description](#package-description)
 * [Usage](#usage)
 * [Installation](#installation)
