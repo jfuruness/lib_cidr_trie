@@ -22,11 +22,11 @@ class CIDRTrie:
         for bit in bits[:prefix.prefixlen]:
             if bool(int(bit)):
                 if node.right is None:
-                    node.right = CIDRTrie.node_class()
+                    node.right = self.node_class()
                 node = node.right
             else:
                 if node.left is None:
-                    node.left = CIDRTrie.node_class()
+                    node.left = self.node_class()
                 node = node.left
         node.add_data(prefix, *node_data)
 

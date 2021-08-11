@@ -79,6 +79,7 @@ You can test the package if in development by moving/cd into the directory where
 
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
+* 0.0.3 Made it easier to subclass CIDRTrie
 * 0.0.2 README update
 * 0.0.1 First working version
 

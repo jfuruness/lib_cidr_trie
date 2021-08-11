@@ -9,7 +9,7 @@ setup(
     name='lib_cidr_trie',
     author="Justin Furuness",
     author_email="jfuruness@gmail.com",
-    version="0.0.2",
+    version="0.0.3",
     url='https://github.com/jfuruness/lib_cidr_trie.git',
     license="BSD",
     description="Creates a CIDR trie",
