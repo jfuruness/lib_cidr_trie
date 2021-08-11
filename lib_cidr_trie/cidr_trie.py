@@ -13,7 +13,7 @@ class CIDRTrie:
         self.root = CIDRNode()
         assert hasattr(self, "prefix_class"), "No specified IPV"
 
-    def insert(self, *node_data):
+    def insert(self, prefix, *node_data):
         """Inserts a prefix into the trie"""
 
         self._validate_prefix(prefix)
@@ -28,7 +28,7 @@ class CIDRTrie:
                 if node.left is None:
                     node.left = CIDRTrie.node_class()
                 node = node.left
-        node.add_data(*node_data)
+        node.add_data(prefix, *node_data)
 
     def __contains__(self, prefix: ip_network):
         """Checks if a prefix is contained within the Trie"""

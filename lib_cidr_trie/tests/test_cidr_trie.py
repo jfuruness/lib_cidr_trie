@@ -3,7 +3,6 @@ from ipaddress import ip_network
 from ..cidr_tries import IPv4CIDRTrie
 
 
-
 def test_tree():
     trie = IPv4CIDRTrie()
     cidrs = [ip_network(x) for x in ["1.2.0.0/16", "1.2.3.0/24", "1.2.3.4"]]
