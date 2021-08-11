@@ -6,7 +6,7 @@ class CIDRNode:
         self.left = left
         self.right = right
 
-    def add_data(self, prefix):
+    def add_data(self, prefix, *args):
         """Adds data to node class
 
         Easy to inherit for things like ROAs
