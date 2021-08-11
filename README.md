@@ -9,6 +9,7 @@ This package contains a trie of prefixes for fast lookups
 * [History](#history)
 * [Credits](#credits)
 * [Licence](#license)
+* [TODO](#todo)
 
 ## Package Description
 * [lib\_cidr\_trie](#lib_cidr_trie)
@@ -93,3 +94,8 @@ You can test the package if in development by moving/cd into the directory where
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
 BSD License (see license file)
+
+## TODO
+* [lib\_cidr\_trie](#lib_cidr_trie)
+* Needs better testing
+* Would be nice to have some traversal funcs
