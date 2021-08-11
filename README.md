@@ -11,11 +11,6 @@ This package contains a trie of prefixes for fast lookups
 * [Licence](#license)
 * [TODO](#todo)
 
-## Package Description
-* [lib\_cidr\_trie](#lib_cidr_trie)
-
-This package contains a trie of prefixes for fast lookups
-
 ## Usage
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
@@ -84,6 +79,7 @@ You can test the package if in development by moving/cd into the directory where
 
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
+* 0.0.2 README update
 * 0.0.1 First working version
 
 ## Credits
