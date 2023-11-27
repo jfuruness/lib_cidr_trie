@@ -90,6 +90,7 @@ tox
 
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
+* 1.1.0 Removed a few type ignores for mypy, added PrefixType to dunder init
 * 1.0.0 Added linters, updated package structure, fixed typing issues
 * 0.0.3 Made it easier to subclass CIDRTrie
 * 0.0.2 README update
