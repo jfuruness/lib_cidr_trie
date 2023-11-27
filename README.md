@@ -1,15 +1,12 @@
 # lib\_cidr\_trie
 This package contains a trie of prefixes for fast lookups
 
-* [Description](#package-description)
 * [Usage](#usage)
 * [Installation](#installation)
 * [Testing](#testing)
 * [Development/Contributing](#developmentcontributing)
 * [History](#history)
-* [Credits](#credits)
 * [Licence](#license)
-* [TODO](#todo)
 
 ## Usage
 * [lib\_cidr\_trie](#lib_cidr_trie)
@@ -53,7 +50,8 @@ If you want to install the project for development:
 ```bash
 git clone https://github.com/jfuruness/lib_cidr_trie.git
 cd lib_cidr_trie
-python3 setup.py develop
+pip3 install -e .[test]
+pre-commit install
 ```
 
 To test the development package: [Testing](#testing)
@@ -62,10 +60,12 @@ To test the development package: [Testing](#testing)
 ## Testing
 * [lib\_cidr_trie](#lib_cidr_trie)
 
-You can test the package if in development by moving/cd into the directory where setup.py is located and running:
-(Note that you must have all dependencies installed first)
-```python3 setup.py test```
+After installing the package for development,
 
+```bash
+cd lib_cidr_trie
+python3 -m pytest lib_cidr_trie
+```
 
 ## Development/Contributing
 * [lib\_cidr\_trie](#lib_cidr_trie)
@@ -79,20 +79,12 @@ You can test the package if in development by moving/cd into the directory where
 
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
+* 1.0.0 Added linters, updated package structure
 * 0.0.3 Made it easier to subclass CIDRTrie
 * 0.0.2 README update
 * 0.0.1 First working version
-
-## Credits
-* [lib\_cidr\_trie](#lib_cidr_trie)
-
 
 ## License
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
 BSD License (see license file)
-
-## TODO
-* [lib\_cidr\_trie](#lib_cidr_trie)
-* Needs better testing
-* Would be nice to have some traversal funcs

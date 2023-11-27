@@ -1,6 +1,6 @@
 from ipaddress import ip_network
 
-from ..cidr_tries import IPv4CIDRTrie
+from lib_cidr_trie import IPv4CIDRTrie
 
 
 def test_tree():
