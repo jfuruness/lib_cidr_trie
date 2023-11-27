@@ -1,85 +1,77 @@
 from abc import ABC, abstractmethod
-from ipaddress import ip_network
-from typing import Optional
+from ipaddress import IPv4Network, IPv6Network
+from typing import Optional, TypeVar, Generic
 
+# Assuming CIDRNode is defined elsewhere, and it has a certain interface.
 from .cidr_node import CIDRNode
 
+# Define type variables for the prefix and node types
+PrefixType = TypeVar("PrefixType", IPv4Network, IPv6Network)
 
-class CIDRTrie(ABC):
+# NOTE: Adding CIDRNode as a generic was causing mypy to flip out
+# so I'm removing it
+
+
+class CIDRTrie(ABC, Generic[PrefixType]):
     """Parent class for trie of CIDRs"""
 
-    def __init__(self, NodeCls: type[CIDRNode] = CIDRNode):
-        self.NodeCls: type[CIDRNode] = CIDRNode
-        # Could be 0.0.0.0/0, for now it's empty
-        self.root: CIDRNode = self.NodeCls
+    # Mypy can't tell that CIDRNode is of type CIDRNode
+    def __init__(self, NodeCls: type[CIDRNode] = CIDRNode):  # type: ignore
+        self.NodeCls: type[CIDRNode] = NodeCls
+        self.root: CIDRNode = self.NodeCls()
 
-    def insert(self, prefix: ip_network, *node_data) -> None:
+    def insert(self, prefix: PrefixType, *node_data) -> None:
         """Inserts a prefix into the trie"""
-
-        # Make sure prefix is IPV4 if it's an IPV4 tree or IPV6
         self._validate_prefix(prefix)
-        # Turn the prefix into bits
         bits = self._get_binary_str_from_prefix(prefix)
         node = self.root
-        # Only go to the bits up to the prefix length
-        # after which the bits are meaningless
-        for bit in bits[:prefix.prefixlen]:
-            # If it's a 1, go to the right
+        for bit in bits[: prefix.prefixlen]:
             if bool(int(bit)):
                 if node.right is None:
                     node.right = self.NodeCls()
                 node = node.right
-            # If bit is a zero, go to the left
             else:
                 if node.left is None:
                     node.left = self.NodeCls()
                 node = node.left
-        # Add the data to the very last node
         node.add_data(prefix, *node_data)
 
-    def __contains__(self, prefix: ip_network) -> bool:
+    def __contains__(self, prefix: PrefixType) -> bool:
         """Checks if a prefix is contained within the Trie"""
-
         return bool(self.get_most_specific_trie_supernet(prefix))
 
-    def get_most_specific_trie_supernet(self, prefix: ip_network) -> Optional[CIDRNode]:
+    def get_most_specific_trie_supernet(self, prefix: PrefixType) -> Optional[CIDRNode]:
         """Returns the most specific trie subnet"""
-
         self._validate_prefix(prefix)
         bits = self._get_binary_str_from_prefix(prefix)
         node = self.root
-        # Default to None
         most_specific_node = None
-        for bit in bits[:prefix.prefixlen]:
-            # Get the next node in the sequence
+        for bit in bits[: prefix.prefixlen]:
             next_node = node.right if bool(int(bit)) else node.left
-            # Reached edge of tree
             if next_node is None:
                 return most_specific_node
-            # New most specific node
             elif next_node.prefix is not None:
                 most_specific_node = next_node
             node = next_node
-
         return most_specific_node
 
-    def _validate_prefix(self, prefix: ip_network) -> None:
+    def _validate_prefix(self, prefix: PrefixType) -> None:
         """Checks that prefix is the proper IPV type"""
-
         if not isinstance(prefix, self.PrefixCls):
-            raise TypeError("Must be an {self.PrefixCls.__name__}")
+            raise TypeError(
+                f"Expected prefix type {self.PrefixCls.__name__}, "
+                f"got {type(prefix).__name__}"
+            )
 
-    def _get_binary_str_from_prefix(self, prefix: ip_network) -> str:
+    def _get_binary_str_from_prefix(self, prefix: PrefixType) -> str:
         """Returns a binary string from a prefix"""
 
         binary_str = ""
         for _byte in prefix.network_address.packed:
-            # https://stackoverflow.com/a/339013/8903959
-            # Convert to binary, then remove the 0b, then fill w/zeroes
             binary_str += str(bin(_byte))[2:].zfill(8)
         return binary_str
 
     @property
     @abstractmethod
-    def PrefixCls(self) -> type[ip_network]:
+    def PrefixCls(self) -> type[PrefixType]:
         raise NotImplementedError

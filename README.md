@@ -12,27 +12,28 @@ This package contains a trie of prefixes for fast lookups
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
 ```python
-from ipaddress import ip_network
-
-from lib_cidr_trie import IPv4CIDRTrie, IPv6CIDRTrie
-
-
 trie = IPv4CIDRTrie()
 cidrs = [ip_network(x) for x in ["1.2.0.0/16", "1.2.3.0/24", "1.2.3.4"]]
 for cidr in cidrs:
-	trie.insert(cidr)
+    # for mypy
+    assert isinstance(cidr, IPv4Network)
+    trie.insert(cidr)
 for cidr in cidrs:
-	assert cidr in trie
-	assert trie.get_most_specific_trie_supernet(cidr).prefix == cidr
+    assert isinstance(cidr, IPv4Network)
+    assert cidr in trie
+    node = trie.get_most_specific_trie_supernet(cidr)
+    assert node is not None and node.prefix == cidr
 
 invalid_cidrs = [ip_network(x) for x in ["1.0.0.0/8", "255.255.255.255"]]
 for invalid_cidr in invalid_cidrs:
-	assert invalid_cidr not in trie
-	assert trie.get_most_specific_trie_supernet(invalid_cidr) is None
+    # for mypy
+    assert isinstance(invalid_cidr, IPv4Network)
+    assert invalid_cidr not in trie
+    assert trie.get_most_specific_trie_supernet(invalid_cidr) is None
 
-assert ip_network("1.2.4.0/24") in trie
-assert ip_network("1.2.0.255") in trie
-assert ip_network("1.3.0.0/16") not in trie
+assert IPv4Network("1.2.4.0/24") in trie
+assert IPv4Network("1.2.0.255") in trie
+assert IPv4Network("1.3.0.0/16") not in trie
 ```
 
 ## Installation
@@ -79,7 +80,7 @@ python3 -m pytest lib_cidr_trie
 
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
-* 1.0.0 Added linters, updated package structure
+* 1.0.0 Added linters, updated package structure, fixed typing issues
 * 0.0.3 Made it easier to subclass CIDRTrie
 * 0.0.2 README update
 * 0.0.1 First working version

@@ -3,13 +3,13 @@ from ipaddress import IPv4Network, IPv6Network
 from .cidr_trie import CIDRTrie
 
 
-class IPv4CIDRTrie(CIDRTrie):
+class IPv4CIDRTrie(CIDRTrie[IPv4Network]):
     """Trie of IPv4 CIDRs"""
 
-    prefix_class = IPv4Network
+    PrefixCls = IPv4Network
 
 
-class IPv6CIDRTrie(CIDRTrie):
+class IPv6CIDRTrie(CIDRTrie[IPv6Network]):
     """Trie of IPv6 CIDRs"""
 
-    prefix_class = IPv6Network
+    PrefixCls = IPv6Network
