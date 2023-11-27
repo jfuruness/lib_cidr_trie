@@ -15,8 +15,7 @@ PrefixType = TypeVar("PrefixType", IPv4Network, IPv6Network)
 class CIDRTrie(ABC, Generic[PrefixType]):
     """Parent class for trie of CIDRs"""
 
-    # Mypy can't tell that CIDRNode is of type CIDRNode
-    def __init__(self, NodeCls: type[CIDRNode] = CIDRNode):  # type: ignore
+    def __init__(self, NodeCls: type[CIDRNode] = CIDRNode):
         self.NodeCls: type[CIDRNode] = NodeCls
         self.root: CIDRNode = self.NodeCls()
 
