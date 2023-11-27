@@ -61,11 +61,21 @@ To test the development package: [Testing](#testing)
 ## Testing
 * [lib\_cidr_trie](#lib_cidr_trie)
 
-After installing the package for development,
+To test the package after installation:
 
-```bash
-cd lib_cidr_trie
-python3 -m pytest lib_cidr_trie
+```
+cd roa_collector
+pytest roa_collector
+ruff roa_collector
+black roa_collector
+mypy roa_collector
+```
+
+If you want to run it across multiple environments, and have python 3.10 and 3.11 installed:
+
+```
+cd roa_collector
+tox
 ```
 
 ## Development/Contributing
