@@ -1,3 +1,11 @@
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
+![Tests](https://github.com/jfuruness/bgpy/actions/workflows/tests.yml/badge.svg)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Checked with mypy](https://img.shields.io/badge/mypy-checked-2A6DBA.svg)](http://mypy-lang.org/)
+
 # lib\_cidr\_trie
 This package contains a trie of prefixes for fast lookups
 
@@ -90,6 +98,9 @@ tox
 
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
+
+* 1.1.2 Python version updates
+* 1.1.1 Dependency updates
 * 1.1.0 Removed a few type ignores for mypy, added PrefixType to dunder init
 * 1.0.0 Added linters, updated package structure, fixed typing issues
 * 0.0.3 Made it easier to subclass CIDRTrie
