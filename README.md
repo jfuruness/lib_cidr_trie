@@ -2,9 +2,6 @@ Informational Badges:
 
 [![PyPI version](https://badge.fury.io/py/bgpy_pkg.svg)](https://badge.fury.io/py/bgpy_pkg)
 ![PyPy](https://img.shields.io/badge/PyPy-7.3.17-blue)
-[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
-[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
-[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/bgpy_pkg)](https://pypi.org/project/bgpy_pkg/)
 ![Tests](https://github.com/jfuruness/bgpy/actions/workflows/tests.yml/badge.svg)
 ![Linux](https://img.shields.io/badge/os-Linux-blue.svg)
