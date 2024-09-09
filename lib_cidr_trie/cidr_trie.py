@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from ipaddress import IPv4Network, IPv6Network
-from typing import Optional, TypeVar, Generic
+from typing import Generic, TypeVar
 
 # Assuming CIDRNode is defined elsewhere, and it has a certain interface.
 from .cidr_node import CIDRNode
@@ -39,7 +39,7 @@ class CIDRTrie(ABC, Generic[PrefixType]):
         """Checks if a prefix is contained within the Trie"""
         return bool(self.get_most_specific_trie_supernet(prefix))
 
-    def get_most_specific_trie_supernet(self, prefix: PrefixType) -> Optional[CIDRNode]:
+    def get_most_specific_trie_supernet(self, prefix: PrefixType) -> CIDRNode | None:
         """Returns the most specific trie subnet"""
         self._validate_prefix(prefix)
         bits = self._get_binary_str_from_prefix(prefix)

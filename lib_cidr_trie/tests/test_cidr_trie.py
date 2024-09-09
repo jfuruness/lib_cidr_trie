@@ -1,4 +1,4 @@
-from ipaddress import ip_network, IPv4Network
+from ipaddress import IPv4Network, ip_network
 
 from lib_cidr_trie import IPv4CIDRTrie
 
@@ -14,7 +14,8 @@ def test_tree():
         assert isinstance(cidr, IPv4Network)
         assert cidr in trie
         node = trie.get_most_specific_trie_supernet(cidr)
-        assert node is not None and node.prefix == cidr
+        assert node is not None
+        assert node.prefix == cidr
 
     invalid_cidrs = [ip_network(x) for x in ["1.0.0.0/8", "255.255.255.255"]]
     for invalid_cidr in invalid_cidrs:
