@@ -1,9 +1,9 @@
 Informational Badges:
 
-[![PyPI version](https://badge.fury.io/py/bgpy_pkg.svg)](https://badge.fury.io/py/bgpy_pkg)
+[![PyPI version](https://badge.fury.io/py/lib_cidr_trie.svg)](https://badge.fury.io/py/lib_cidr_trie)
 ![PyPy](https://img.shields.io/badge/PyPy-7.3.17-blue)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/bgpy_pkg)](https://pypi.org/project/bgpy_pkg/)
-![Tests](https://github.com/jfuruness/bgpy/actions/workflows/tests.yml/badge.svg)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/lib_cidr_trie)](https://pypi.org/project/lib_cidr_trie/)
+![Tests](https://github.com/jfuruness/lib_cidr_trie/actions/workflows/tests.yml/badge.svg)
 ![Linux](https://img.shields.io/badge/os-Linux-blue.svg)
 ![macOS Intel](https://img.shields.io/badge/os-macOS_Intel-lightgrey.svg)
 ![macOS ARM](https://img.shields.io/badge/os-macOS_ARM-lightgrey.svg)
@@ -88,8 +88,8 @@ To test the package after installation:
 ```
 cd roa_collector
 pytest roa_collector
-ruff roa_collector
-black roa_collector
+ruff check roa_collector
+ruff format roa_collector
 mypy roa_collector
 ```
 
@@ -113,6 +113,7 @@ tox
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
+* 1.1.4 Updated docs and test deps
 * 1.1.3 Updated package metadata and fixed some formatting for linters
 * 1.1.2 Python version updates
 * 1.1.1 Dependency updates
