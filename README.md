@@ -86,18 +86,18 @@ To test the development package: [Testing](#testing)
 To test the package after installation:
 
 ```
-cd roa_collector
-pytest roa_collector
-ruff check roa_collector
-ruff format roa_collector
-mypy roa_collector
+cd lib_cidr_trie
+pytest lib_cidr_trie
+ruff check lib_cidr_trie
+ruff format lib_cidr_trie
+mypy lib_cidr_trie
 ```
 
-If you want to run it across multiple environments, and have python 3.10 and 3.11 installed:
+You can run isolated builds across multiple environments with:
 
 ```
-cd roa_collector
-tox
+cd lib_cidr_trie
+tox --skip-missing-interpreters
 ```
 
 ## Development/Contributing
@@ -113,8 +113,9 @@ tox
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
-* 1.1.4 Updated docs and test deps
-* 1.1.3 Updated package metadata and fixed some formatting for linters
+* 1.2.5 Updated README
+* 1.2.4 Updated docs and test deps
+* 1.2.3 Updated package metadata and fixed some formatting for linters
 * 1.1.2 Python version updates
 * 1.1.1 Dependency updates
 * 1.1.0 Removed a few type ignores for mypy, added PrefixType to dunder init
