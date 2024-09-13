@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lib_cidr_trie"
-version = "1.2.5"
+version = "1.2.6"
 description = "Contains a trie of prefixes for fast lookups"
 readme = "README.md"
 authors = [
@@ -77,8 +77,7 @@ lib_cidr_trie = ["py.typed"]
 # https://stackoverflow.com/a/76214408/8903959
 [tool.setuptools.packages.find]
 where = ["."]
-# Chat gpt told me to add this...
-include = ["lib_cidr_trie"]
+exclude = ["scripts"]
 
 [tool.pytest.ini_options]
 addopts = "-rxXs -v"  # Shows reasons for skipping, xfailing, etc

@@ -113,6 +113,7 @@ tox --skip-missing-interpreters
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
+* 1.2.6 Fixed a bug in the pyproject.toml that screwed up non-local installs
 * 1.2.5 Updated README
 * 1.2.4 Updated docs and test deps
 * 1.2.3 Updated package metadata and fixed some formatting for linters
