@@ -7,7 +7,6 @@ Informational Badges:
 ![Linux](https://img.shields.io/badge/os-Linux-blue.svg)
 ![macOS Intel](https://img.shields.io/badge/os-macOS_Intel-lightgrey.svg)
 ![macOS ARM](https://img.shields.io/badge/os-macOS_ARM-lightgrey.svg)
-![Windows](https://img.shields.io/badge/os-Windows-blue.svg)
 
 Some Linting Badges (Where I could find them):
 
@@ -113,6 +112,7 @@ tox --skip-missing-interpreters
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
+* 1.2.7 Updated dependencies and ruff rules
 * 1.2.6 Fixed a bug in the pyproject.toml that screwed up non-local installs
 * 1.2.5 Updated README
 * 1.2.4 Updated docs and test deps
