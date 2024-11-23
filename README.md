@@ -112,6 +112,7 @@ tox --skip-missing-interpreters
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
+* 1.2.8 Removed windows classifier from pyproject.toml
 * 1.2.7 Updated dependencies and ruff rules
 * 1.2.6 Fixed a bug in the pyproject.toml that screwed up non-local installs
 * 1.2.5 Updated README
