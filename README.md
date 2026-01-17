@@ -112,6 +112,7 @@ tox --skip-missing-interpreters
 ## History
 * [lib\_cidr\_trie](#lib_cidr_trie)
 
+* 1.2.10 Fixed tox.ini to point to pypy3.11
 * 1.2.9 Upgrading dependencies and supported Python versions
 * 1.2.8 Removed windows classifier from pyproject.toml
 * 1.2.7 Updated dependencies and ruff rules
