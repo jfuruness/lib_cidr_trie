@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lib_cidr_trie"
-version = "1.2.10"
+version = "1.2.11"
 description = "Contains a trie of prefixes for fast lookups"
 readme = "README.md"
 authors = [
